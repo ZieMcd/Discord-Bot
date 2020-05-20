@@ -1,8 +1,12 @@
 'use strict';
 
+
 const Discord = require('discord.js');
 const {prefix, token} = require('./config.json');
 const client = new Discord.Client();
+const resp = require('./responses');
+
+
 
 var line = 0;
 
@@ -12,15 +16,23 @@ client.once('ready',() => {
 
 client.on('message', message => {
     //console.log(message.content);
-
+  
     //==================Message replies=======================
-    if (message.content.includes("hey jeff"))
+
+    module.exports.message = this.message;
+
+    if (message.content.includes("B"))
     {
-        message.channel.send("wud up");
-        //test();
+        resp.test();
     }
 
-    if(message.content.includes(`ziegay`))
+    if (message.content.includes("A"))
+    {
+        message.channel.send("Test index");
+       
+    }
+
+   /* if(message.content.includes(`ziegay`))
     {
         message.channel.send("No u");
     }
@@ -28,6 +40,11 @@ client.on('message', message => {
     if(message.content.includes(`epic games`))
     {
         message.channel.send("E-pig games is gay");
+    }
+
+    if(message.content.includes(`jeff is gabzilla a furry`))
+    {
+        message.channel.send("He will try to hide it, but on the inside he is");
     }
 
     //RooiRonin
@@ -65,7 +82,9 @@ client.on('message', message => {
         message.reply(message.author.displayAvatarURL());
     }
 
-    //==========================================================
+    //==========================================================*/
+
+    
 })
 
 
