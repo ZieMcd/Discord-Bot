@@ -11,7 +11,6 @@ client.once('ready',() => {
 })
 
 client.on('message', message => {
-    //console.log(message.content);
 
     //==================Message replies=======================
     if (message.content.includes("hey jeff"))
