@@ -1,5 +1,7 @@
 'use strict';
 
+const  { getResponses }  = require("./message-response");
+
 const Discord = require('discord.js');
 const {prefix, token} = require('./config.json');
 const client = new Discord.Client();
@@ -13,26 +15,12 @@ client.once('ready',() => {
 client.on('message', message => {
 
     //==================Message replies=======================
-    if (message.content.includes("hey jeff"))
-    {
-        message.channel.send("wud up");
-        //test();
-    }
+    getResponses(message.content).forEach(msg => {
+            sendResponse(msg);
+        });
 
-    if(message.content.includes(`ziegay`))
+    if(msgContent.includes(`RooiRonin`) && line === 0)
     {
-        message.channel.send("No u");
-    }
-
-    if(message.content.includes(`epic games`))
-    {
-        message.channel.send("E-pig games is gay");
-    }
-
-    //RooiRonin
-    if(message.content.includes(`RooiRonin`) && line === 0)
-    {
-        message.channel.send("I see you're talking about RooiRonin, just want to let you know that he is very bad at apex legends");
         line++;
     }
     else if(line==1 && message.content.indexOf('RooiRonin') === -1)
@@ -40,14 +28,15 @@ client.on('message', message => {
         line = line -1;
     }
 
+
     if (message.author.discriminator == 1933)
     {
-        message.channel.send("Shut up Tim");
+        sendResponse("Shut up Tim");
     }
 
     if (message.author.discriminator == 4876)
     {
-        message.channel.send("MEE6 my mortal enemy ");
+        sendResponse("MEE6 my mortal enemy ");
     }
 
     
@@ -67,5 +56,15 @@ client.on('message', message => {
     //==========================================================
 })
 
+const sendResponse = (msg) => {
+    message.channel.send(msg);
+}
+
+/* REMOVE ME
+    // Test the message-response.js module:
+    console.log(getResponses("hey jeff")[0]);
+*/
+
 
 client.login(token);
+
